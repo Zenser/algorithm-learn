@@ -1,3 +1,4 @@
+var binarySearch = require('./binarySearch')
 /**
  * 冒泡排序 时间复杂度O(n!)
  * 步骤1：指针p1=array[0]，指针p2=array[1]
@@ -24,4 +25,20 @@ exports.bubbleSequence = function bubbleSequence(array, fn) {
         p1++
     }
     return array
+}
+
+/**
+ * 快速排序 时间复杂度(O(n * log(n)))
+ * 步骤1：待排序数组a1，空数组a2，待排序索引start=0, end=a1.length - 1
+ * 步骤2：取出a1[start]位置数据，二分查找出a2对应位置，插入a2
+ * 步骤3：start向后移动，是否大于end，是则结束，否则回到步骤2
+ */
+exports.quickSequence = function quickSequence(array1, array2, start, end) {
+    while (start <= end) {
+        var value = binarySearch.binarySearchReturnIndex(array2, 0, array2.length, array1[start])
+        array2.splice(value.index, 0, array1[start])
+        console.log('quick sequence' + value.index)
+        start++
+    }
+    return array2
 }

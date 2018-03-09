@@ -39,3 +39,19 @@ exports.binarySearchRecursive = function binarySearchRecursive(array, low, high,
         return binarySearchRecursive(array, mid + 1, high, target)
     }
 }
+
+exports.binarySearchReturnIndex = function binarySearchReturnIndex(array, low, high, target) {
+    var mid;
+    while (low <= high) {
+        mid = low + parseInt((high - low) / 2)
+        var midValue = array[mid]
+        if (target === midValue) {
+            return {code: 0, index: mid}
+        } else if (target < midValue) {
+            high = mid - 1
+        } else {
+            low = mid + 1
+        }
+    }
+    return {code: -1, index: mid}
+}
