@@ -1,6 +1,11 @@
 var binarySearch = require('./binarySearch')
+var swap = require('./swap');
+
 /**
- * 冒泡排序 时间复杂度O(n!)
+ * 冒泡排序 时间复杂度O(n^2)
+ * f(n) = f(n-1) + n = n + (n - 1) + (n - 2) + ... + (n - n)
+ * = n^2 - n * (n + 1) / 2
+ * = n^2 / 2 - n / 2 <= n^2
  * 步骤1：指针p1=array[0]，指针p2=array[1]
  * 步骤2：比较函数fn(p1, p2)执行，大于0，array中执行的值互换；其他不做变动
  * 步骤3：p2是否到最末，否则p2指针继续向后移动，跳转步骤2；是则步骤4
@@ -16,9 +21,7 @@ exports.bubbleSequence = function bubbleSequence(array, fn) {
         while (p2 < length) {
             var flag = fn(array[p1], array[p2])
             if (flag > 0) {
-                var t = array[p1]
-                array[p1] = array[p2]
-                array[p2] = t
+                swap(array, p1, p2)
             }
             p2++
         }
