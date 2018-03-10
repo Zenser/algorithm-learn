@@ -41,9 +41,8 @@ exports.binarySearchRecursive = function binarySearchRecursive(array, low, high,
 }
 
 exports.binarySearchReturnIndex = function binarySearchReturnIndex(array, low, high, target) {
-    var mid;
     while (low <= high) {
-        mid = low + parseInt((high - low) / 2)
+        var mid = low + parseInt((high - low) / 2)
         var midValue = array[mid]
         if (target === midValue) {
             return {code: 0, index: mid}
@@ -53,5 +52,23 @@ exports.binarySearchReturnIndex = function binarySearchReturnIndex(array, low, h
             low = mid + 1
         }
     }
-    return {code: -1, index: mid}
+    return {code: -1, index: low}
+}
+
+/**
+ * 正常查找，时间复杂度O(n)
+ * @param array
+ * @param low
+ * @param high
+ * @param target
+ * @returns {*}
+ */
+exports.normalSearchReturnIndex = function binarySearchReturnIndex(array, low, high, target) {
+    while (low <= high) {
+        if (target === array[low] || target < array[low]) {
+            return {code: 0, index: low}
+        }
+        low++
+    }
+    return {code: -1, index: low}
 }

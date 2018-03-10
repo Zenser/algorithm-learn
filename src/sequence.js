@@ -38,9 +38,20 @@ exports.bubbleSequence = function bubbleSequence(array, fn) {
  */
 exports.quickSequence = function quickSequence(array1, array2, start, end) {
     while (start <= end) {
-        var value = binarySearch.binarySearchReturnIndex(array2, 0, array2.length, array1[start])
+        var value = binarySearch.binarySearchReturnIndex(array2, 0, array2.length - 1, array1[start])
         array2.splice(value.index, 0, array1[start])
-        console.log('quick sequence' + value.index)
+        start++
+    }
+    return array2
+}
+/**
+ * 插入排序 时间复杂度(O(n^2))
+ * 类似快速排序，但是查找使用普通查找
+ */
+exports.insertSequence = function quickSequence(array1, array2, start, end) {
+    while (start <= end) {
+        var value = binarySearch.normalSearchReturnIndex(array2, 0, array2.length - 1, array1[start])
+        array2.splice(value.index, 0, array1[start])
         start++
     }
     return array2
